@@ -4,6 +4,18 @@ import "./App.css";
 const projects = [
   {
     number: "01",
+    title: "AI Recruitment Automation & HR Assistant",
+    category: "AI & Workflow Automation",
+    description:
+      "Sistem recruitment automation berbasis n8n yang memproses CV, membuat qualification summary dengan Google Gemini, menyimpan data kandidat ke Google Sheets, mengirim notifikasi HR melalui Telegram, dan menyediakan HR AI Agent untuk pencarian kandidat.",
+    tech: ["n8n", "Google Gemini", "Google Sheets", "Telegram API", "Railway"],
+    desktop: "/projects/ai-recruitment-workflow.png",
+    mobile: null,
+    demo: "https://n8n-production-0312c.up.railway.app/form/b5121603-8e6f-4c55-af70-972ae0eface9",
+    github: "https://github.com/TAMAM3/ai-recruitment-automation",
+  },
+  {
+    number: "02",
     title: "MEDANPARK Dashboard",
     category: "Admin Dashboard",
     description:
@@ -15,7 +27,7 @@ const projects = [
     github: "https://github.com/TAMAM3/medanpark-dashboard",
   },
   {
-    number: "02",
+    number: "03",
     title: "MEDANPARK Mobile",
     category: "Mobile Web App",
     description:
@@ -27,7 +39,7 @@ const projects = [
     github: "https://github.com/TAMAM3/medanpark-mobile",
   },
   {
-    number: "03",
+    number: "04",
     title: "Movie Streaming",
     category: "Entertainment Website",
     description:
@@ -39,7 +51,7 @@ const projects = [
     github: "https://github.com/TAMAM3/movix",
   },
   {
-    number: "04",
+    number: "05",
     title: "Haren Coffee",
     category: "Business Website",
     description:
@@ -47,7 +59,7 @@ const projects = [
     tech: ["React", "CSS", "WhatsApp"],
     desktop: "/projects/haren-web.png",
     mobile: "/projects/haren-mobile.png",
-    demo: "https://haren-coffee.vercel.app/",
+    demo: "https://n8n + Gemini + Telegram/",
     github: "https://github.com/TAMAM3/haren-coffee",
   },
 ];
@@ -209,8 +221,8 @@ function App() {
             </h1>
 
             <p className="hero-description">
-              Information Technology graduate focused on responsive web
-              development, data, clean interfaces, and functional digital
+              Information Technology graduate focused on AI automation, workflow
+              automation, web development, data, and functional digital
               products.
             </p>
 
@@ -233,13 +245,13 @@ function App() {
 
             <div className="hero-stats">
               <div className="stat-card">
-                <b>04</b>
+                <b>05</b>
                 <span>Selected Projects</span>
               </div>
 
               <div className="stat-card">
-                <b>WEB</b>
-                <span>Development</span>
+                <b>AI</b>
+                <span>Automation</span>
               </div>
 
               <div className="stat-card">
@@ -262,16 +274,16 @@ function App() {
                 </div>
 
                 <div className="coffee-url">
-                  haren-coffee.vercel.app
+                  n8n + Gemini + Telegram
                 </div>
               </div>
 
-              <img src="/projects/haren-web.png" alt="Haren Coffee" />
+              <img src="/projects/ai-recruitment-workflow.png" alt="AI Recruitment Automation workflow" />
             </div>
 
             <div className="featured-label">
               <span>Featured Project</span>
-              <strong>HAREN COFFEE</strong>
+              <strong>AI RECRUITMENT AUTOMATION</strong>
             </div>
           </div>
         </section>
@@ -283,8 +295,8 @@ function App() {
             <h2>Projects I've built.</h2>
 
             <p>
-              A selection of projects focused on functionality, clean design,
-              responsiveness, and real use cases.
+              A selection of projects focused on AI automation, workflow integration,
+              web development, clean design, and real use cases.
             </p>
           </div>
 
@@ -355,14 +367,17 @@ function App() {
           <div className="about-right">
             <div className="about-copy">
               <p>
-                I'm an Information Technology graduate interested in web
-                development, data management, and digital products.
+                I'm an Information Technology graduate interested in AI automation,
+                workflow automation, web development, data management, and
+                digital products.
               </p>
 
               <p>
-                Beyond building web applications, I have professional
-                experience in CRM administration, database management,
-                broadcasting, data entry, and digital communication.
+                Beyond building web applications, I build automation workflows that
+                connect AI models, APIs, databases, and messaging tools. I
+                also have professional experience in CRM administration,
+                database management, broadcasting, data entry, and digital
+                communication.
               </p>
             </div>
 
@@ -457,6 +472,24 @@ function App() {
                 <span>Data Entry</span>
                 <span>Data Validation</span>
                 <span>Database Management</span>
+              </div>
+            </div>
+
+            <div className="skill-group">
+              <span className="skill-title">
+                AI & AUTOMATION
+              </span>
+
+              <div className="skills-list">
+                <span>n8n</span>
+                <span>AI Automation</span>
+                <span>Workflow Automation</span>
+                <span>Google Gemini</span>
+                <span>AI Agent</span>
+                <span>API Integration</span>
+                <span>Google Sheets Automation</span>
+                <span>Telegram Bot API</span>
+                <span>Railway</span>
               </div>
             </div>
 
