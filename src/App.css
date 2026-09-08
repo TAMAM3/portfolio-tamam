@@ -2774,15 +2774,16 @@ footer {
   }
 
   .hero::after {
-    background:
-      linear-gradient(
-        0deg,
-        rgba(8, 7, 6, 1) 0%,
-        rgba(8, 7, 6, 0.95) 24%,
-        rgba(8, 7, 6, 0.66) 56%,
-        rgba(8, 7, 6, 0.24) 100%
-      );
-  }
+  background:
+    linear-gradient(
+      0deg,
+      rgba(8, 7, 6, 1) 0%,
+      rgba(8, 7, 6, 0.88) 18%,
+      rgba(8, 7, 6, 0.45) 45%,
+      rgba(8, 7, 6, 0.08) 72%,
+      transparent 100%
+    );
+}
 
   .hero-photo img {
     height: 100%;
@@ -3080,6 +3081,71 @@ footer {
 
     text-align: center;
   }
+}
+
+/* =========================================================
+   MOBILE PHOTO FIX
+========================================================= */
+
+.hero-photo {
+  display: block !important;
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  opacity: 1;
+}
+
+.hero-photo img {
+  display: block !important;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: 55% center;
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+
+/* FOTO ABOUT */
+
+.about-photo {
+  display: block !important;
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 480px;
+
+  overflow: hidden;
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.about-photo img {
+  display: block !important;
+
+  width: 100%;
+  height: 480px;
+
+  object-fit: cover;
+
+  object-position: 50% 45%;
+
+  opacity: 1;
+
+  visibility: visible;
 }
 
 /* =========================================================
