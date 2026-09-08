@@ -74,7 +74,7 @@ const projects = [
 
 const experiences = [
   {
-    year: "2025 — 2026",
+    year: "2026",
     company: "LPK KOLEGIUM THT-BKL",
     position: "Admin CRM & Broadcasting",
     description:
@@ -89,7 +89,7 @@ const experiences = [
   },
 
   {
-    year: "2025",
+    year: "2024",
     company: "DINAS KETAHANAN PANGAN & HORTIKULTURA",
     position: "Administrative Intern",
     description:
@@ -103,7 +103,7 @@ const experiences = [
   },
 
   {
-    year: "PROJECT",
+    year: "2022 - now",
     company: "BKKBN",
     position: "Data Entry Project",
     description:
