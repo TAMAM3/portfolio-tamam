@@ -1990,10 +1990,11 @@ img {
 
   width: 100%;
 
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
 
-  padding: 8px 0 15px;
+  padding:
+    8px 0 15px;
 
   cursor: grab;
 
@@ -2019,21 +2020,11 @@ img {
 
   width: max-content;
 
-  animation:
-    skillsMarquee 32s linear infinite;
-
-  will-change: transform;
+  /* JANGAN PAKAI ANIMATION LAGI */
+  animation: none;
 }
 
-/* Arahkan cursor = berhenti */
-.skills-slider:hover .skills-track {
-  animation-play-state: paused;
-}
 
-/* Klik tahan + geser = berhenti juga */
-.skills-slider.dragging .skills-track {
-  animation-play-state: paused;
-}
 
 .skill-card {
   flex: 0 0 115px;
@@ -2101,17 +2092,6 @@ img {
   pointer-events: none;
 }
 
-@keyframes skillsMarquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(
-      calc(-50% - 5px)
-    );
-  }
-} 
 
 .skill-card {
   width: 115px;

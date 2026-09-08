@@ -269,47 +269,113 @@ function ProjectCard({ project }) {
 
 function App() {
 
-  const skillsSliderRef = useRef(null);
+const skillsSliderRef = useRef(null);
 
-const dragData = useRef({
-  isDown: false,
+const skillControl = useRef({
+  dragging: false,
   startX: 0,
-  scrollLeft: 0,
+  startScroll: 0,
 });
 
-const startDrag = (e) => {
+useEffect(() => {
   const slider = skillsSliderRef.current;
+
   if (!slider) return;
 
-  dragData.current.isDown = true;
-  dragData.current.startX = e.clientX;
-  dragData.current.scrollLeft = slider.scrollLeft;
+  let animationFrame;
+
+  const autoScroll = () => {
+    if (!skillControl.current.dragging) {
+      // BESARKAN ANGKA INI KALAU MAU LEBIH CEPAT
+      slider.scrollLeft += 0.8;
+    }
+
+    const halfWidth =
+      slider.scrollWidth / 2;
+
+    // SUDAH SAMPAI COPY KEDUA
+    // BALIK KE POSISI YANG SAMA
+    if (
+      halfWidth > 0 &&
+      slider.scrollLeft >= halfWidth
+    ) {
+      slider.scrollLeft -= halfWidth;
+    }
+
+    // KALAU DIGESER KE KIRI TERLALU JAUH
+    if (slider.scrollLeft <= 0) {
+      slider.scrollLeft += halfWidth;
+    }
+
+    animationFrame =
+      requestAnimationFrame(autoScroll);
+  };
+
+  animationFrame =
+    requestAnimationFrame(autoScroll);
+
+  return () => {
+    cancelAnimationFrame(animationFrame);
+  };
+}, []);
+
+
+const startDrag = (e) => {
+  const slider =
+    skillsSliderRef.current;
+
+  if (!slider) return;
+
+  skillControl.current.dragging = true;
+
+  skillControl.current.startX =
+    e.clientX;
+
+  skillControl.current.startScroll =
+    slider.scrollLeft;
 
   slider.classList.add("dragging");
-  slider.setPointerCapture?.(e.pointerId);
+
+  slider.setPointerCapture?.(
+    e.pointerId
+  );
 };
 
-const dragSkills = (e) => {
-  if (!dragData.current.isDown) return;
 
-  const slider = skillsSliderRef.current;
+const dragSkills = (e) => {
+  if (!skillControl.current.dragging) {
+    return;
+  }
+
+  const slider =
+    skillsSliderRef.current;
+
   if (!slider) return;
 
   const distance =
-    e.clientX - dragData.current.startX;
+    e.clientX -
+    skillControl.current.startX;
 
   slider.scrollLeft =
-    dragData.current.scrollLeft - distance;
+    skillControl.current.startScroll -
+    distance;
 };
 
-const stopDrag = (e) => {
-  const slider = skillsSliderRef.current;
 
-  dragData.current.isDown = false;
+const stopDrag = (e) => {
+  const slider =
+    skillsSliderRef.current;
+
+  skillControl.current.dragging = false;
 
   if (slider) {
-    slider.classList.remove("dragging");
-    slider.releasePointerCapture?.(e.pointerId);
+    slider.classList.remove(
+      "dragging"
+    );
+
+    slider.releasePointerCapture?.(
+      e.pointerId
+    );
   }
 };
 
@@ -1195,26 +1261,29 @@ const stopDrag = (e) => {
   onPointerMove={dragSkills}
   onPointerUp={stopDrag}
   onPointerCancel={stopDrag}
-  onPointerLeave={stopDrag}
 >
   <div className="skills-track">
 
-    {[...skills, ...skills].map((skill, index) => (
-      <div
-        className="skill-card"
-        key={`${skill.name}-${index}`}
-      >
-        <div className="skill-icon">
-          <img
-            src={skill.icon}
-            alt={skill.name}
-            draggable="false"
-          />
-        </div>
+    {[...skills, ...skills].map(
+      (skill, index) => (
+        <div
+          className="skill-card"
+          key={`${skill.name}-${index}`}
+        >
+          <div className="skill-icon">
+            <img
+              src={skill.icon}
+              alt={skill.name}
+              draggable="false"
+            />
+          </div>
 
-        <span>{skill.name}</span>
-      </div>
-    ))}
+          <span>
+            {skill.name}
+          </span>
+        </div>
+      )
+    )}
 
   </div>
 </div>
