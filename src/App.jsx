@@ -1,55 +1,60 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "./App.css";
+
+/* =========================================================
+   PROJECTS
+========================================================= */
 
 const projects = [
   {
     number: "01",
-    title: "AI Recruitment Automation & HR Assistant",
-    category: "AI & Workflow Automation",
+    title: "AI Recruitment Automation",
+    category: "AI & Automation",
     description:
-      "Sistem recruitment automation berbasis n8n yang memproses CV, membuat qualification summary dengan Google Gemini, menyimpan data kandidat ke Google Sheets, mengirim notifikasi HR melalui Telegram, dan menyediakan HR AI Agent untuk pencarian kandidat.",
-    tech: ["n8n", "Google Gemini", "Google Sheets", "Telegram API", "Railway"],
-    desktop: "/projects/ai-recruitment-workflow.png",
-    mobile: null,
+      "Workflow recruitment automation berbasis n8n yang memproses CV, membuat qualification summary dengan Gemini, menyimpan data ke Google Sheets, dan menghubungkan HR melalui Telegram.",
+    tech: ["n8n", "Gemini AI", "Google Sheets", "Telegram", "Railway"],
+    image: "/projects/ai-recruitment-workflow.png",
     demo: "https://n8n-production-0312c.up.railway.app/form/b5121603-8e6f-4c55-af70-972ae0eface9",
     github: "https://github.com/TAMAM3/ai-recruitment-automation",
+    featured: true,
   },
+
   {
     number: "02",
+    title: "MEDANPARK Mobile",
+    category: "Mobile Web App",
+    description:
+      "Aplikasi mobile untuk jukir dengan pencatatan kendaraan, riwayat parkir, foto kendaraan, dan pemindaian plat nomor menggunakan OCR.",
+    tech: ["React", "Node.js", "OCR", "Railway"],
+    image: "/projects/jukir-mobile.png",
+    demo: "https://medanpark-mobile.vercel.app/",
+    github: "https://github.com/TAMAM3/medanpark-mobile",
+  },
+
+  {
+    number: "03",
     title: "MEDANPARK Dashboard",
     category: "Admin Dashboard",
     description:
       "Dashboard administrasi untuk memantau aktivitas parkir, verifikasi jukir, kendaraan, pendapatan, dan riwayat transaksi.",
-    tech: ["React", "Node.js", "Express"],
-    desktop: "/projects/dashboard-web.png",
-    mobile: null,
+    tech: ["React", "Node.js", "Express", "API"],
+    image: "/projects/dashboard-web.png",
     demo: "https://medanpark-dashboard.vercel.app/",
     github: "https://github.com/TAMAM3/medanpark-dashboard",
   },
-  {
-    number: "03",
-    title: "MEDANPARK Mobile",
-    category: "Mobile Web App",
-    description:
-      "Aplikasi mobile untuk jukir dengan pencatatan kendaraan, riwayat parkir, foto kendaraan, dan pemindaian plat nomor.",
-    tech: ["React", "Responsive UI", "OCR"],
-    desktop: null,
-    mobile: "/projects/jukir-mobile.png",
-    demo: "https://medanpark-mobile.vercel.app/",
-    github: "https://github.com/TAMAM3/medanpark-mobile",
-  },
+
   {
     number: "04",
-    title: "Movie Streaming",
+    title: "Movix",
     category: "Entertainment Website",
     description:
-      "Website eksplorasi film dan series dengan pencarian, detail film, popular movies, series, dan desain responsive.",
+      "Website eksplorasi film dan series dengan pencarian, detail film, popular movies, series, dan tampilan responsive.",
     tech: ["React", "API", "CSS"],
-    desktop: "/projects/movie-web.png",
-    mobile: "/projects/movie-mobile.png",
+    image: "/projects/movie-web.png",
     demo: "https://movix-eight-rosy.vercel.app/",
     github: "https://github.com/TAMAM3/movix",
   },
+
   {
     number: "05",
     title: "Haren Coffee",
@@ -57,16 +62,19 @@ const projects = [
     description:
       "Website coffee modern dengan katalog produk, tampilan responsive, dan sistem pemesanan melalui WhatsApp.",
     tech: ["React", "CSS", "WhatsApp"],
-    desktop: "/projects/haren-web.png",
-    mobile: "/projects/haren-mobile.png",
-    demo: "https://n8n + Gemini + Telegram/",
+    image: "/projects/haren-web.png",
+    demo: "https://haren-coffee.vercel.app/",
     github: "https://github.com/TAMAM3/haren-coffee",
   },
 ];
 
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
 const experiences = [
   {
-    number: "01",
+    year: "2025 — 2026",
     company: "LPK KOLEGIUM THT-BKL",
     position: "Admin CRM & Broadcasting",
     description:
@@ -77,11 +85,11 @@ const experiences = [
       "Broadcasting",
       "WhatsApp",
       "Email Campaign",
-      "Social Media",
     ],
   },
+
   {
-    number: "02",
+    year: "2025",
     company: "DINAS KETAHANAN PANGAN & HORTIKULTURA",
     position: "Administrative Intern",
     description:
@@ -93,77 +101,223 @@ const experiences = [
       "Administration",
     ],
   },
+
   {
-    number: "03",
+    year: "PROJECT",
     company: "BKKBN",
     position: "Data Entry Project",
     description:
       "Entered and matched family data from physical documents into Excel and internal systems while validating information to maintain accuracy and consistency.",
-    tags: [
-      "Data Entry",
-      "Excel",
-      "Data Verification",
-      "Data Management",
-    ],
+    tags: ["Data Entry", "Excel", "Data Verification", "Data Management"],
   },
 ];
 
-function ProjectVisual({ project }) {
-  if (project.desktop && project.mobile) {
-    return (
-      <div className="combo-preview">
-        <div className="browser-frame">
-          <div className="browser-bar">
-            <div className="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
+/* =========================================================
+   SKILLS
+========================================================= */
 
-          <img src={project.desktop} alt={`${project.title} desktop`} />
-        </div>
+const skills = [
+  {
+    name: "React",
+    icon: "https://cdn.simpleicons.org/react/61DAFB",
+  },
+  {
+    name: "JavaScript",
+    icon: "https://cdn.simpleicons.org/javascript/F7DF1E",
+  },
+  {
+    name: "Node.js",
+    icon: "https://cdn.simpleicons.org/nodedotjs/5FA04E",
+  },
+  {
+    name: "Express.js",
+    icon: "https://cdn.simpleicons.org/express/FFFFFF",
+  },
+  {
+    name: "HTML5",
+    icon: "https://cdn.simpleicons.org/html5/E34F26",
+  },
+  {
+    name: "CSS3",
+    icon: "https://cdn.simpleicons.org/css/663399",
+  },
+  {
+    name: "Python",
+    icon: "https://cdn.simpleicons.org/python/3776AB",
+  },
+  {
+    name: "Pandas",
+    icon: "https://cdn.simpleicons.org/pandas/FFFFFF",
+  },
+  {
+    name: "scikit-learn",
+    icon: "https://cdn.simpleicons.org/scikitlearn/F7931E",
+  },
+{
+  name: "XGBoost",
+  icon: "https://img.icons8.com/color/96/artificial-intelligence.png",
+},
+  {
+    name: "n8n",
+    icon: "https://cdn.simpleicons.org/n8n/EA4B71",
+  },
+  {
+    name: "Gemini AI",
+    icon: "https://cdn.simpleicons.org/googlegemini/8E75B2",
+  },
+  {
+    name: "Google Sheets",
+    icon: "https://cdn.simpleicons.org/googlesheets/34A853",
+  },
+  {
+    name: "Excel",
+    icon: "https://img.icons8.com/color/96/microsoft-excel-2019--v1.png",
+  },
+{
+  name: "Tesseract OCR",
+  icon: "https://img.icons8.com/fluency/96/scan-stock.png",
+},
+  {
+    name: "REST API",
+    icon: "https://cdn.simpleicons.org/fastapi/009688",
+  },
+  {
+    name: "Git",
+    icon: "https://cdn.simpleicons.org/git/F05032",
+  },
+  {
+    name: "GitHub",
+    icon: "https://cdn.simpleicons.org/github/FFFFFF",
+  },
+  {
+    name: "Figma",
+    icon: "https://cdn.simpleicons.org/figma/F24E1E",
+  },
+  {
+    name: "Vercel",
+    icon: "https://cdn.simpleicons.org/vercel/FFFFFF",
+  },
+  {
+    name: "Railway",
+    icon: "https://cdn.simpleicons.org/railway/FFFFFF",
+  },
+  {
+    name: "Telegram",
+    icon: "https://cdn.simpleicons.org/telegram/26A5E4",
+  },
+];
 
-        <div className="phone-frame">
-          <div className="phone-notch"></div>
-          <img src={project.mobile} alt={`${project.title} mobile`} />
-        </div>
-      </div>
-    );
-  }
+/* =========================================================
+   PROJECT CARD
+========================================================= */
 
-  if (project.desktop) {
-    return (
-      <div className="desktop-only">
-        <div className="browser-frame">
-          <div className="browser-bar">
-            <div className="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-
-          <img src={project.desktop} alt={project.title} />
-        </div>
-      </div>
-    );
-  }
-
+function ProjectCard({ project }) {
   return (
-    <div className="mobile-only">
-      <div className="mobile-glow"></div>
+    <article
+      className={`project-card ${project.featured ? "project-featured" : ""}`}
+    >
+      <div className="project-image">
+        <img src={project.image} alt={project.title} />
 
-      <div className="phone-frame phone-center">
-        <div className="phone-notch"></div>
-        <img src={project.mobile} alt={project.title} />
+        <div className="project-overlay"></div>
+
+        <span className="project-number">{project.number}</span>
+
+        <span className="project-category">{project.category}</span>
       </div>
-    </div>
+
+      <div className="project-content">
+        <h3>{project.title}</h3>
+
+        <p>{project.description}</p>
+
+        <div className="tech-list">
+          {project.tech.map((tech) => (
+            <span key={tech}>{tech}</span>
+          ))}
+        </div>
+
+        <div className="project-actions">
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-demo"
+          >
+            View Project
+            <span>↗</span>
+          </a>
+
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-github"
+          >
+            GitHub
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </article>
   );
 }
 
+/* =========================================================
+   APP
+========================================================= */
+
 function App() {
+
+  const skillsSliderRef = useRef(null);
+
+const dragData = useRef({
+  isDown: false,
+  startX: 0,
+  scrollLeft: 0,
+});
+
+const startDrag = (e) => {
+  const slider = skillsSliderRef.current;
+  if (!slider) return;
+
+  dragData.current.isDown = true;
+  dragData.current.startX = e.clientX;
+  dragData.current.scrollLeft = slider.scrollLeft;
+
+  slider.classList.add("dragging");
+  slider.setPointerCapture?.(e.pointerId);
+};
+
+const dragSkills = (e) => {
+  if (!dragData.current.isDown) return;
+
+  const slider = skillsSliderRef.current;
+  if (!slider) return;
+
+  const distance =
+    e.clientX - dragData.current.startX;
+
+  slider.scrollLeft =
+    dragData.current.scrollLeft - distance;
+};
+
+const stopDrag = (e) => {
+  const slider = skillsSliderRef.current;
+
+  dragData.current.isDown = false;
+
+  if (slider) {
+    slider.classList.remove("dragging");
+    slider.releasePointerCapture?.(e.pointerId);
+  }
+};
+
+  const heroRef = useRef(null);
+
   useEffect(() => {
+    /* Scroll reveal */
+
     const elements = document.querySelectorAll(".reveal");
 
     const observer = new IntersectionObserver(
@@ -181,428 +335,1084 @@ function App() {
 
     elements.forEach((element) => observer.observe(element));
 
-    return () => observer.disconnect();
+    /* Navbar */
+
+    const navbar = document.querySelector(".navbar");
+
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        navbar?.classList.add("navbar-scrolled");
+      } else {
+        navbar?.classList.remove("navbar-scrolled");
+      }
+
+      /* Hero parallax */
+
+      if (heroRef.current && window.innerWidth > 800) {
+        const amount = window.scrollY * 0.12;
+
+        heroRef.current.style.setProperty(
+          "--hero-parallax",
+          `${amount}px`
+        );
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <div className="site">
+
+      {/* =====================================================
+          NAVBAR
+      ====================================================== */}
+
       <header className="navbar">
         <a href="#home" className="brand">
-          TAMAM AULIYA HABIB<span>.</span>
+          TAH<span>.</span>
         </a>
 
         <nav>
+          <a href="#home">Home</a>
           <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
           <a href="#about">About</a>
+          <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
         </nav>
 
-        <a href="#contact" className="nav-button">
-          Let's Talk
-          <span>↗</span>
+        <a
+          href="/CV-Tamam-Auliya-Habib.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav-button"
+        >
+          Download CV
+          <span>↓</span>
         </a>
       </header>
 
       <main>
-        <section className="hero reveal" id="home">
+
+        {/* ===================================================
+            HERO
+        ==================================================== */}
+
+        <section
+          className="hero"
+          id="home"
+          ref={heroRef}
+        >
+          <div className="hero-photo">
+            <img
+              src="/tamam-night.png"
+              alt="Tamam Auliya Habib"
+            />
+
+            <div className="hero-photo-overlay"></div>
+          </div>
+
+          <div className="hero-noise"></div>
+
           <div className="hero-copy">
-            <div className="availability">
-              <span></span>
-              Available for opportunities
-            </div>
 
             <h1>
-              Hello, I'm
-              <br />
-              <strong>Tamam Auliya Habib.</strong>
-              <br />
-              I build digital <span>experiences.</span>
+              Hi, I'm
+              <strong>
+                TAMAM AULIYA
+                <span> HABIB</span>
+              </strong>
             </h1>
 
+            <div className="hero-roles">
+              <span>AI AUTOMATION</span>
+              <i>•</i>
+              <span>WEB DEVELOPMENT</span>
+              <i>•</i>
+              <span>DATA</span>
+            </div>
+
+            <h2>
+              I build systems that
+              <br />
+              <span>automate, connect,</span> and create impact.
+            </h2>
+
             <p className="hero-description">
-              Information Technology graduate focused on AI automation, workflow
-              automation, web development, data, and functional digital
-              products.
+              Information Technology graduate interested in building
+              functional digital products, automation workflows,
+              web applications, and turning data into useful solutions.
             </p>
 
             <div className="hero-buttons">
               <a href="#projects" className="primary-btn">
-                Explore Projects
-                <span>↓</span>
+                View My Projects
+                <span>→</span>
               </a>
-
-              <a
-                href="/CV-Tamam-Auliya-Habib.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="secondary-btn"
-              >
-                Download CV
-                <span>↗</span>
-              </a>
-            </div>
-
-            <div className="hero-stats">
-              <div className="stat-card">
-                <b>05</b>
-                <span>Selected Projects</span>
-              </div>
-
-              <div className="stat-card">
-                <b>AI</b>
-                <span>Automation</span>
-              </div>
-
-              <div className="stat-card">
-                <b>DATA</b>
-                <span>Management</span>
-              </div>
             </div>
           </div>
 
-          <div className="hero-preview">
-            <div className="coffee-glow glow-one"></div>
-            <div className="coffee-glow glow-two"></div>
+          <div className="hero-side-note">
+            <span>BUILD.</span>
+            <span>LEARN.</span>
+            <span>IMPROVE.</span>
+            <span>REPEAT.</span>
+          </div>
 
-            <div className="coffee-browser">
-              <div className="coffee-browser-top">
-                <div className="dots">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
+          <a href="#projects" className="scroll-indicator">
+            <span>↓</span>
+            Scroll to explore
+          </a>
+        </section>
 
-                <div className="coffee-url">
-                  n8n + Gemini + Telegram
-                </div>
-              </div>
+        {/* ===================================================
+            STATS
+        ==================================================== */}
 
-              <img src="/projects/ai-recruitment-workflow.png" alt="AI Recruitment Automation workflow" />
-            </div>
+        <section className="stats-strip reveal">
+          <div className="stat-item">
+            <strong>05</strong>
+            <span>Selected Projects</span>
+          </div>
 
-            <div className="featured-label">
-              <span>Featured Project</span>
-              <strong>AI RECRUITMENT AUTOMATION</strong>
-            </div>
+          <div className="stat-divider"></div>
+
+          <div className="stat-item">
+            <strong>AI</strong>
+            <span>Automation</span>
+          </div>
+
+          <div className="stat-divider"></div>
+
+          <div className="stat-item">
+            <strong>WEB</strong>
+            <span>Development</span>
+          </div>
+
+          <div className="stat-divider"></div>
+
+          <div className="stat-item">
+            <strong>DATA</strong>
+            <span>Management</span>
           </div>
         </section>
 
-        <section className="projects-section reveal" id="projects">
-          <div className="section-heading">
-            <span>SELECTED WORK</span>
+        {/* ===================================================
+            PROJECTS
+        ==================================================== */}
 
-            <h2>Projects I've built.</h2>
+        <section
+          className="projects-section reveal"
+          id="projects"
+        >
+          <div className="section-top">
+            <div>
+              <span className="section-label">
+                FEATURED PROJECTS
+              </span>
+
+              <h2>
+                Building ideas into
+                <br />
+                <span>real products.</span>
+              </h2>
+            </div>
 
             <p>
-              A selection of projects focused on AI automation, workflow integration,
-              web development, clean design, and real use cases.
+              A selection of projects I've built across AI automation,
+              web applications, mobile experiences, and digital products.
             </p>
           </div>
 
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <article className="project-card" key={project.title}>
-                <div className="project-visual">
-                  <span className="project-number">
-                    {project.number}
-                  </span>
+<div className="portfolio-board">
 
-                  <ProjectVisual project={project} />
-                </div>
+  {/* LEFT PROJECT INDEX */}
+  <aside className="project-index">
+    <span className="index-active">01</span>
+    <span>02</span>
+    <span>03</span>
+    <span>04</span>
+    <span>05</span>
+  </aside>
 
-                <div className="project-content">
-                  <span className="project-category">
-                    {project.category}
-                  </span>
+  <div className="portfolio-projects">
 
-                  <h3>{project.title}</h3>
+    {/* =========================================
+        AI RECRUITMENT
+    ========================================== */}
 
-                  <p>{project.description}</p>
+    <article className="featured-row featured-ai">
 
-                  <div className="tech-list">
-                    {project.tech.map((item) => (
-                      <span key={item}>{item}</span>
-                    ))}
-                  </div>
+      <div className="featured-copy">
+        <span className="featured-eyebrow">
+          FEATURED PROJECT
+        </span>
 
-                  <div className="project-actions">
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link"
-                    >
-                      Live Demo
-                      <span>↗</span>
-                    </a>
+        <div className="featured-number">
+          01
+        </div>
 
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="github-link"
-                    >
-                      GitHub
-                      <span>↗</span>
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+        <h3>
+          AI Recruitment
+          <br />
+          Automation
+        </h3>
 
-        <section className="about-section reveal" id="about">
-          <div>
-            <span className="section-label">ABOUT ME</span>
+        <p>
+          Workflow recruitment automation berbasis n8n yang
+          memproses CV, membuat qualification summary dengan
+          Gemini, menyimpan data ke Google Sheets, dan
+          menghubungkan HR melalui Telegram.
+        </p>
 
-            <h2>
-              Technology, data,
-              <br />
-              and digital experience.
-            </h2>
-          </div>
+        <div className="featured-tech">
+          <span>n8n</span>
+          <span>Gemini AI</span>
+          <span>Google Sheets</span>
+          <span>Telegram</span>
+          <span>Railway</span>
+        </div>
 
-          <div className="about-right">
-            <div className="about-copy">
-              <p>
-                I'm an Information Technology graduate interested in AI automation,
-                workflow automation, web development, data management, and
-                digital products.
-              </p>
+        <div className="featured-actions">
+          <a
+            href="https://n8n-production-0312c.up.railway.app/form/b5121603-8e6f-4c55-af70-972ae0eface9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="featured-primary"
+          >
+            View Live Project
+            <span>↗</span>
+          </a>
 
-              <p>
-                Beyond building web applications, I build automation workflows that
-                connect AI models, APIs, databases, and messaging tools. I
-                also have professional experience in CRM administration,
-                database management, broadcasting, data entry, and digital
-                communication.
-              </p>
+          <a
+            href="https://github.com/TAMAM3/ai-recruitment-automation"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="featured-secondary"
+          >
+            GitHub
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="featured-visual ai-visual">
+
+        <div className="visual-glow"></div>
+
+        <div className="floating-tech tech-n8n">
+          <img
+            src="https://cdn.simpleicons.org/n8n/EA4B71"
+            alt="n8n"
+          />
+          <span>n8n</span>
+        </div>
+
+        <div className="floating-tech tech-gemini">
+          <img
+            src="https://cdn.simpleicons.org/googlegemini/8E75B2"
+            alt="Gemini"
+          />
+        </div>
+
+        <div className="floating-tech tech-sheets">
+          <img
+            src="https://cdn.simpleicons.org/googlesheets/34A853"
+            alt="Google Sheets"
+          />
+        </div>
+
+        <div className="floating-tech tech-telegram">
+          <img
+            src="https://cdn.simpleicons.org/telegram/26A5E4"
+            alt="Telegram"
+          />
+        </div>
+
+        <div className="project-browser ai-browser">
+          <div className="project-browser-top">
+            <div className="browser-dots">
+              <i></i>
+              <i></i>
+              <i></i>
             </div>
 
-            <div className="education-card">
-              <div className="education-icon">🎓</div>
+            <span>
+              automation.workflow
+            </span>
+          </div>
+
+          <div className="project-browser-image">
+            <img
+              src="/projects/ai-recruitment-workflow.png"
+              alt="AI Recruitment Automation"
+            />
+          </div>
+        </div>
+
+        <span className="visual-note">
+          Real workflow.
+          <br />
+          Real impact.
+        </span>
+
+      </div>
+    </article>
+
+
+    {/* =========================================
+        HAREN COFFEE
+    ========================================== */}
+
+    <article className="featured-row featured-coffee">
+
+      <div className="featured-visual coffee-visual">
+
+        <div className="coffee-light"></div>
+
+        <div className="floating-tech coffee-react">
+          <img
+            src="https://cdn.simpleicons.org/react/61DAFB"
+            alt="React"
+          />
+        </div>
+
+        <div className="floating-tech coffee-whatsapp">
+          <img
+            src="https://cdn.simpleicons.org/whatsapp/25D366"
+            alt="WhatsApp"
+          />
+        </div>
+
+        <div className="project-browser coffee-browser">
+          <div className="project-browser-top">
+            <div className="browser-dots">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+
+            <span>
+              haren-coffee.vercel.app
+            </span>
+          </div>
+
+          <div className="project-browser-image">
+            <img
+              src="/projects/haren-web.png"
+              alt="Haren Coffee"
+            />
+          </div>
+        </div>
+
+        <span className="coffee-note">
+          Good coffee.
+          <br />
+          Better days.
+        </span>
+
+      </div>
+
+      <div className="featured-copy">
+
+        <span className="featured-eyebrow">
+          BUSINESS WEBSITE
+        </span>
+
+        <div className="featured-number">
+          02
+        </div>
+
+        <h3>
+          Haren
+          <br />
+          Coffee
+        </h3>
+
+        <p>
+          Website coffee modern dengan katalog produk,
+          tampilan responsive, dan sistem pemesanan
+          langsung melalui WhatsApp.
+        </p>
+
+        <div className="featured-tech">
+          <span>React</span>
+          <span>CSS</span>
+          <span>Responsive UI</span>
+          <span>WhatsApp</span>
+        </div>
+
+        <div className="featured-actions">
+          <a
+            href="https://haren-coffee.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="featured-primary"
+          >
+            View Project
+            <span>↗</span>
+          </a>
+
+          <a
+            href="https://github.com/TAMAM3/haren-coffee"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="featured-secondary"
+          >
+            GitHub
+            <span>↗</span>
+          </a>
+        </div>
+
+      </div>
+    </article>
+
+
+    {/* =========================================
+        SMALL PROJECTS
+    ========================================== */}
+
+<div className="compact-projects">
+
+  {/* =========================================
+      MEDANPARK MOBILE
+  ========================================== */}
+
+  <article className="compact-card compact-mobile-card">
+
+    <div className="compact-visual compact-mobile-visual">
+
+      <div className="compact-mobile-glow"></div>
+
+      <div className="mini-phone">
+        <div className="mini-phone-speaker"></div>
+
+        <div className="mini-phone-screen">
+          <img
+            src="/projects/jukir-mobile.png"
+            alt="MEDANPARK Mobile"
+          />
+        </div>
+      </div>
+
+      <span className="compact-project-number">
+        03
+      </span>
+
+      <div className="compact-floating-logo compact-react-logo">
+        <img
+          src="https://cdn.simpleicons.org/react/61DAFB"
+          alt="React"
+        />
+      </div>
+
+    </div>
+
+    <div className="compact-content">
+
+      <span className="compact-category">
+        MOBILE WEB APP
+      </span>
+
+      <h3>
+        MEDANPARK Mobile
+      </h3>
+
+      <p>
+        Aplikasi mobile untuk jukir dengan pencatatan
+        kendaraan, riwayat parkir, foto kendaraan,
+        dan pemindaian plat nomor menggunakan OCR.
+      </p>
+
+      <div className="compact-tech-list">
+        <span>React</span>
+        <span>OCR</span>
+        <span>Responsive UI</span>
+        <span>API</span>
+      </div>
+
+      <div className="compact-actions">
+
+        <a
+          href="https://medanpark-mobile.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="compact-primary"
+        >
+          View Project
+          <span>↗</span>
+        </a>
+
+        <a
+          href="https://github.com/TAMAM3/medanpark-mobile"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="compact-secondary"
+        >
+          GitHub
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+
+  {/* =========================================
+      MEDANPARK DASHBOARD
+  ========================================== */}
+
+  <article className="compact-card">
+
+    <div className="compact-visual">
+
+      <span className="compact-project-number">
+        04
+      </span>
+
+      <div className="compact-browser">
+
+        <div className="compact-browser-top">
+          <div>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <span>
+            medanpark-dashboard.vercel.app
+          </span>
+        </div>
+
+        <div className="compact-browser-screen">
+          <img
+            src="/projects/dashboard-web.png"
+            alt="MEDANPARK Dashboard"
+          />
+        </div>
+
+      </div>
+
+    </div>
+
+    <div className="compact-content">
+
+      <span className="compact-category">
+        ADMIN DASHBOARD
+      </span>
+
+      <h3>
+        MEDANPARK Dashboard
+      </h3>
+
+      <p>
+        Dashboard administrasi untuk memantau aktivitas
+        parkir, verifikasi jukir, kendaraan, pendapatan,
+        dan riwayat transaksi.
+      </p>
+
+      <div className="compact-tech-list">
+        <span>React</span>
+        <span>Node.js</span>
+        <span>Express</span>
+        <span>API</span>
+      </div>
+
+      <div className="compact-actions">
+
+        <a
+          href="https://medanpark-dashboard.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="compact-primary"
+        >
+          View Project
+          <span>↗</span>
+        </a>
+
+        <a
+          href="https://github.com/TAMAM3/medanpark-dashboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="compact-secondary"
+        >
+          GitHub
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+
+  {/* =========================================
+      MOVIX
+  ========================================== */}
+
+  <article className="compact-card compact-movix-card">
+
+    <div className="compact-visual">
+
+      <span className="compact-project-number">
+        05
+      </span>
+
+      <div className="compact-browser">
+
+        <div className="compact-browser-top">
+          <div>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <span>
+            movix-eight-rosy.vercel.app
+          </span>
+        </div>
+
+        <div className="compact-browser-screen">
+          <img
+            src="/projects/movie-web.png"
+            alt="Movix"
+          />
+        </div>
+
+      </div>
+
+    </div>
+
+    <div className="compact-content">
+
+      <span className="compact-category">
+        ENTERTAINMENT WEBSITE
+      </span>
+
+      <h3>
+        Movix
+      </h3>
+
+      <p>
+        Website eksplorasi film dan series dengan
+        pencarian, detail film, popular movies,
+        series, dan desain responsive.
+      </p>
+
+      <div className="compact-tech-list">
+        <span>React</span>
+        <span>API</span>
+        <span>CSS</span>
+        <span>Responsive</span>
+      </div>
+
+      <div className="compact-actions">
+
+        <a
+          href="https://movix-eight-rosy.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="compact-primary"
+        >
+          View Project
+          <span>↗</span>
+        </a>
+
+        <a
+          href="https://github.com/TAMAM3/movix"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="compact-secondary"
+        >
+          GitHub
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+</div>
+
+  </div>
+</div>
+
+
+        </section>
+
+        {/* ===================================================
+            ABOUT
+        ==================================================== */}
+
+        <section
+          className="about-section reveal"
+          id="about"
+        >
+          <div className="about-photo">
+            <img
+              src="/tamam-night.png"
+              alt="Tamam"
+            />
+
+            <div className="about-photo-overlay"></div>
+
+            <span className="about-photo-text">
+              BETTER
+              <br />
+              EVERY
+              <br />
+              DAY.
+            </span>
+          </div>
+
+          <div className="about-content">
+            <span className="section-label">
+              ABOUT ME
+            </span>
+
+            <h2>
+              More than
+              <br />
+              <span>just code.</span>
+            </h2>
+
+            <p>
+              I'm an Information Technology graduate interested in
+              web development, AI automation, workflow integration,
+              data management, and digital products.
+            </p>
+
+            <p>
+              I enjoy connecting tools, APIs, databases, and
+              automation workflows to turn ideas into practical
+              systems that can solve real problems.
+            </p>
+
+            <div className="about-info-grid">
+              <div>
+                <small>LOCATION</small>
+                <strong>Medan, Indonesia</strong>
+              </div>
 
               <div>
                 <small>EDUCATION</small>
-
                 <strong>Information Technology</strong>
+              </div>
 
-                <span>
-                  Universitas Muhammadiyah Sumatera Utara
-                </span>
+              <div>
+                <small>UNIVERSITY</small>
+                <strong>UMSU</strong>
+              </div>
 
-                <p>2021 — 2025</p>
+              <div>
+                <small>GRADUATED</small>
+                <strong>2025</strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="about-values">
+            <div className="value-card">
+              <span>01</span>
+
+              <div>
+                <strong>Problem Solver</strong>
+                <p>
+                  Interested in finding practical solutions to
+                  real-world problems.
+                </p>
+              </div>
+            </div>
+
+            <div className="value-card">
+              <span>02</span>
+
+              <div>
+                <strong>Continuous Learner</strong>
+                <p>
+                  Always learning new tools, technologies, and
+                  better ways to build.
+                </p>
+              </div>
+            </div>
+
+            <div className="value-card">
+              <span>03</span>
+
+              <div>
+                <strong>Detail Oriented</strong>
+                <p>
+                  Paying attention to details throughout every
+                  process.
+                </p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* ===================================================
+            SKILLS
+        ==================================================== */}
+
+        <section
+          className="skills-section reveal"
+          id="skills"
+        >
+          <div className="skills-heading">
+            <div>
+              <span className="section-label">
+                SKILLS & TOOLS
+              </span>
+
+              <h2>
+                Tools I
+                <span> work with.</span>
+              </h2>
+            </div>
+
+            <p>
+              Technologies and tools I use across development,
+              automation, data, design, and deployment.
+            </p>
+          </div>
+
+<div
+  className="skills-slider"
+  ref={skillsSliderRef}
+  onPointerDown={startDrag}
+  onPointerMove={dragSkills}
+  onPointerUp={stopDrag}
+  onPointerCancel={stopDrag}
+  onPointerLeave={stopDrag}
+>
+  <div className="skills-track">
+
+    {[...skills, ...skills].map((skill, index) => (
+      <div
+        className="skill-card"
+        key={`${skill.name}-${index}`}
+      >
+        <div className="skill-icon">
+          <img
+            src={skill.icon}
+            alt={skill.name}
+            draggable="false"
+          />
+        </div>
+
+        <span>{skill.name}</span>
+      </div>
+    ))}
+
+  </div>
+</div>
+        </section>
+
+        {/* ===================================================
+            EXPERIENCE
+        ==================================================== */}
 
         <section
           className="experience-section reveal"
           id="experience"
         >
-          <div className="experience-header">
-            <span className="section-label">EXPERIENCE</span>
+          <div className="experience-heading">
+            <span className="section-label">
+              MY JOURNEY
+            </span>
 
-            <h2>Work experience.</h2>
+            <h2>
+              Experience
+              <span> so far.</span>
+            </h2>
           </div>
 
-          <div className="experience-list">
-            {experiences.map((experience) => (
+          <div className="experience-timeline">
+            {experiences.map((experience, index) => (
               <article
                 className="experience-card"
-                key={experience.number}
+                key={experience.company}
               >
-                <div className="experience-number">
-                  {experience.number}
+                <div className="timeline-marker">
+                  <span></span>
                 </div>
 
-                <div className="experience-info">
-                  <span>{experience.company}</span>
+                <div className="experience-year">
+                  {experience.year}
+                </div>
 
-                  <h3>{experience.position}</h3>
+                <div className="experience-content">
+                  <small>
+                    {experience.company}
+                  </small>
 
-                  <p>{experience.description}</p>
+                  <h3>
+                    {experience.position}
+                  </h3>
+
+                  <p>
+                    {experience.description}
+                  </p>
 
                   <div className="experience-tags">
-                    {experience.tags.map((item) => (
-                      <span key={item}>{item}</span>
+                    {experience.tags.map((tag) => (
+                      <span key={tag}>
+                        {tag}
+                      </span>
                     ))}
                   </div>
                 </div>
+
+                <span className="experience-index">
+                  0{index + 1}
+                </span>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="skills-section reveal" id="skills">
-          <div className="skills-heading">
-            <span className="section-label">SKILLS & TOOLS</span>
+        {/* ===================================================
+            CONTACT
+        ==================================================== */}
 
-            <h2>What I work with.</h2>
-          </div>
+        <section
+          className="contact-section reveal"
+          id="contact"
+        >
+          <div className="contact-glow"></div>
 
-          <div className="skills-groups">
-            <div className="skill-group">
-              <span className="skill-title">DEVELOPMENT</span>
-
-              <div className="skills-list">
-                <span>React</span>
-                <span>JavaScript</span>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>Node.js</span>
-                <span>Express</span>
-                <span>Git</span>
-              </div>
-            </div>
-
-            <div className="skill-group">
-              <span className="skill-title">
-                DATA & DATABASE
-              </span>
-
-              <div className="skills-list">
-                <span>Python</span>
-                <span>SQL</span>
-                <span>Microsoft Excel</span>
-                <span>Tableau</span>
-                <span>Data Entry</span>
-                <span>Data Validation</span>
-                <span>Database Management</span>
-              </div>
-            </div>
-
-            <div className="skill-group">
-              <span className="skill-title">
-                AI & AUTOMATION
-              </span>
-
-              <div className="skills-list">
-                <span>n8n</span>
-                <span>AI Automation</span>
-                <span>Workflow Automation</span>
-                <span>Google Gemini</span>
-                <span>AI Agent</span>
-                <span>API Integration</span>
-                <span>Google Sheets Automation</span>
-                <span>Telegram Bot API</span>
-                <span>Railway</span>
-              </div>
-            </div>
-
-            <div className="skill-group">
-              <span className="skill-title">
-                DIGITAL & TOOLS
-              </span>
-
-              <div className="skills-list">
-                <span>CRM</span>
-                <span>WhatsApp Broadcasting</span>
-                <span>Email Campaign</span>
-                <span>Social Media</span>
-                <span>Figma</span>
-                <span>Microsoft Office</span>
-                <span>WMS / Odoo</span>
-              </div>
-            </div>
-
-            <div className="skill-group">
-              <span className="skill-title">
-                PROFESSIONAL
-              </span>
-
-              <div className="skills-list">
-                <span>Problem Solving</span>
-                <span>Teamwork</span>
-                <span>Communication</span>
-                <span>Discipline</span>
-                <span>Responsibility</span>
-                <span>Adaptability</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="contact-section reveal" id="contact">
-          <div>
+          <div className="contact-heading">
             <span className="section-label">
               LET'S CONNECT
             </span>
 
             <h2>
-              Have an opportunity
+              Let's build
               <br />
-              or project?
+              something <span>great.</span>
             </h2>
-          </div>
 
-          <div className="contact-copy">
             <p>
-              Feel free to reach out for collaboration,
-              opportunities, or interesting projects.
+              Open to discussing opportunities, collaborations,
+              interesting projects, or just a good conversation.
             </p>
           </div>
 
-          <div className="contact-buttons">
-            <a
-              href="https://wa.me/62895618114639"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-whatsapp"
-            >
-              <div>
-                <small>WhatsApp</small>
-                <strong>0895 6181 14639</strong>
-              </div>
+<div className="contact-actions">
 
-              <span>↗</span>
-            </a>
+  <a
+    href="https://wa.me/62895618114639"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card"
+  >
+    <div className="contact-left">
+      <div className="contact-icon">
+        <img
+          src="https://cdn.simpleicons.org/whatsapp/FFFFFF"
+          alt="WhatsApp"
+        />
+      </div>
 
-            <a
-              href="mailto:tamamhabib123@gmail.com"
-              className="contact-email"
-            >
-              <div>
-                <small>Email</small>
-                <strong>
-                  tamamhabib123@gmail.com
-                </strong>
-              </div>
+      <span>WhatsApp</span>
+    </div>
 
-              <span>↗</span>
-            </a>
-          </div>
+    <b>↗</b>
+  </a>
+
+
+  <a
+    href="mailto:tamamhabib123@gmail.com"
+    className="contact-card"
+  >
+    <div className="contact-left">
+      <div className="contact-icon">
+        <img
+          src="https://cdn.simpleicons.org/gmail/FFFFFF"
+          alt="Email"
+        />
+      </div>
+
+      <span>Email</span>
+    </div>
+
+    <b>↗</b>
+  </a>
+
+
+  <a
+    href="https://github.com/TAMAM3"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card"
+  >
+    <div className="contact-left">
+      <div className="contact-icon">
+        <img
+          src="https://cdn.simpleicons.org/github/FFFFFF"
+          alt="GitHub"
+        />
+      </div>
+
+      <span>GitHub</span>
+    </div>
+
+    <b>↗</b>
+  </a>
+
+
+  <a
+    href="https://www.linkedin.com/in/tamam-habib"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card"
+  >
+    <div className="contact-left">
+      <div className="contact-icon">
+        <img
+  src="https://img.icons8.com/ios-filled/100/FFFFFF/linkedin.png"
+  alt="LinkedIn"
+/>
+      </div>
+
+      <span>LinkedIn</span>
+    </div>
+
+    <b>↗</b>
+  </a>
+
+</div>
         </section>
+
       </main>
 
+      {/* =====================================================
+          FOOTER
+      ====================================================== */}
+
       <footer>
+        <a href="#home" className="footer-brand">
+          TAH<span>.</span>
+        </a>
+
         <span>
           © 2026 Tamam Auliya Habib.
         </span>
 
-        <div className="footer-links">
-          <a
-            href="https://github.com/TAMAM3"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub ↗
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/tamam-habib"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn ↗
-          </a>
-        </div>
-
         <span>
-          Designed & built with React.
+          Built with React ♡
         </span>
       </footer>
     </div>
